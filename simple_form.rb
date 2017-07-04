@@ -85,33 +85,34 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :ui_left_labled_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_labeled_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
     b.use :html5
-    b.use :label
-
-    b.wrapper tag: 'div', class: 'ui left labeled input' do |input|
+    b.use :placeholder
+    b.wrapper tag: 'div', class: 'ui labeled input' do |input|
+      input.use :ui_label
       input.use :input
-      input.use :hint, wrap_with: { tag: 'div', class: 'hint' }
     end
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
 
-  config.wrappers :ui_right_labled_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_right_labeled_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
     b.use :html5
-    b.use :label
-
+    b.use :placeholder
     b.wrapper tag: 'div', class: 'ui right labeled input' do |input|
       input.use :input
-      input.use :hint, wrap_with: { tag: 'div', class: 'hint' }
+      input.use :ui_label
     end
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
-  
-  config.wrappers :ui_left_iconed_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+
+  config.wrappers :ui_iconed_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
     b.use :html5
     b.use :placeholder
     b.wrapper tag: 'div', class: 'ui left icon input', wrap_with: { tag: 'div', class: 'hint' } do |input|
       input.use :icon
       input.use :input
     end
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
 
   config.wrappers :ui_right_iconed_input, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
@@ -121,6 +122,7 @@ SimpleForm.setup do |config|
       input.use :input
       input.use :icon
     end
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
   end
 
   # The default wrapper to be used by the FormBuilder.
