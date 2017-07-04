@@ -2,15 +2,11 @@ module SimpleForm
   module Components
     module Icon
       def icon(wrapper_options = nil)
-        @icon ||= begin
-          if options[:icon].present?
-            "<i class='" + options[:icon] + " icon'></i>"
-          end
-        end
+        return icon_class unless options[:icon].nil?
       end
 
-      def has_icon?
-        icon.present?
+      def icon_class
+        icon_tag = template.content_tag(:i, '', class: options[:icon] + ' icon')
       end
     end
   end
